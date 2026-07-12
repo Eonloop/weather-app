@@ -36,6 +36,22 @@ body {
 .main-content {
     font-size: 20px;
     margin-bottom: 20px;
+    color: #fff;
+}
+
+.main-input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 10px;
+}
+
+.main-button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #d86464;
+    color: #fff;
 }
 
 .footer {
@@ -44,4 +60,21 @@ body {
     padding: 20px;
     text-align: center;
     grid-area: footer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    font-size: 18px;
+}
+
+.footer a {
+    display: inline-block;
+    margin: 0 8px;
+}
+
+.footer-icon {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
 }
