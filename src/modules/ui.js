@@ -1,5 +1,6 @@
 import '../styles.css'
 import getWeather from './api.js';
+import githubIcon from '../icons/github.svg';
 
 export default function createUI() {
     createHeader();
@@ -26,33 +27,44 @@ function createFooter() {
     footerText.textContent = 'Eonloop'
 
     const footerLink = document.createElement('a');
-    footerLink.href = 'https://ijjtech.net';
-    footerLink.innerHTML = '<img src="../icons/link_icon.svg" alt="Link Icon">'
+    footerLink.href = 'https://github.com/Eonloop';
     footerLink.target = '_blank';
     footerLink.rel = 'noopener noreferrer';
 
-    const footerDate = document.createElement('p');
-    footerDate.textContent = new Date().toLocaleDateString();
+    const icon = document.createElement('img');
+    icon.src = githubIcon;
+    icon.classList.add('footer-icon');
+    icon.alt = 'GitHub';
+    footerLink.appendChild(icon);
 
-    footer.appendChild(footerText);
+    const footerDate = document.createElement('p');
+    footerDate.textContent = new Date().getFullYear();
+
     footer.appendChild(footerLink);
+    footer.appendChild(footerText);
     footer.appendChild(footerDate);
     document.body.appendChild(footer);
 }
 
 function createMain() {
+
     const main = document.createElement('div');
     main.classList.add('main');
     document.body.appendChild(main);
+
     const mainContent = document.createElement('div');
     mainContent.classList.add('main-content');
     mainContent.textContent = "Enter your location to get the weather!"
     main.appendChild(mainContent);
+
     const mainInput = document.createElement('input');
+    mainInput.classList.add('main-input');
     mainInput.type = 'text';
     mainInput.placeholder = 'Enter your location';
     main.appendChild(mainInput);
+
     const mainButton = document.createElement('button');
+    mainButton.classList.add('main-button');
     mainButton.textContent = 'Get Weather';
     main.appendChild(mainButton);
 
