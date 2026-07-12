@@ -10,6 +10,18 @@
     padding: 20px;
     text-align: center;
     grid-area: header;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-icon {
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+    color: #fff;
 }
 
 body {
@@ -22,6 +34,10 @@ body {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;
+    background-image: url('./images/rainy-window.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .main {
@@ -37,6 +53,10 @@ body {
     font-size: 20px;
     margin-bottom: 20px;
     color: #fff;
+    border-radius: 2px;
+    background-color: rgb(138, 61, 71);
+    padding: 10px;
+    font-weight: bold;
 }
 
 .main-input {
