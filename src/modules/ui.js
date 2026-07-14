@@ -2,6 +2,8 @@ import '../styles.css'
 import getWeather from './api.js';
 import githubIcon from '../icons/github.svg';
 import weatherIcon from '../icons/cloud-sun-fill.svg';
+import dailyWeather from './weatherPane.js';
+import Weather from './weather.js';
 
 export default function createUI() {
     createHeader();
@@ -79,9 +81,10 @@ function createMain() {
     main.appendChild(mainButton);
 
     mainButton.addEventListener('click', async () => {
-        const test = await getWeather(mainInput.value);
-        console.log(test);
-        mainContent.textContent = `The weather in ${mainInput.value} is ${test.currentConditions.temp}°F`;
+        const weatherData = new Weather (await getWeather(mainInput.value));
+        console.log(weatherData);
+        mainContent.textContent = '';
+        mainContent.appendChild(dailyWeather(weatherData));
     });
 }
 
