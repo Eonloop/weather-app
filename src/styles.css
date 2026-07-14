@@ -98,3 +98,10 @@ body {
     height: 16px;
     vertical-align: middle;
 }
+
+
+.daily-weather-icon {
+    width: 100px;
+    height: 100px;
+    vertical-align: middle;
+}
