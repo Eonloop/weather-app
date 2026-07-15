@@ -66,13 +66,13 @@ function createMain() {
 
     const mainContent = document.createElement('div');
     mainContent.classList.add('main-content');
-    mainContent.textContent = "Enter your location to get the weather!"
+    //mainContent.textContent = "Enter your location to get the weather!"
     main.appendChild(mainContent);
 
     const mainInput = document.createElement('input');
     mainInput.classList.add('main-input');
     mainInput.type = 'text';
-    mainInput.placeholder = 'Enter your location';
+    mainInput.placeholder = 'Enter a city or zip code';
     main.appendChild(mainInput);
 
     const mainButton = document.createElement('button');
@@ -84,7 +84,7 @@ function createMain() {
         const weatherData = new Weather (await getWeather(mainInput.value));
         console.log(weatherData);
         mainContent.textContent = '';
-        mainContent.appendChild(dailyWeather(weatherData));
+        mainContent.appendChild(dailyWeather(weatherData));    
     });
 }
 
