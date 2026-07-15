@@ -6,7 +6,7 @@ export default function dailyWeather(weatherData) {
     
     const dailyWeatherHeader = document.createElement('h2');
     dailyWeatherHeader.classList.add('daily-weather-header');
-    dailyWeatherHeader.textContent = 'The weather in ' + weatherData.location + " is:";
+    dailyWeatherHeader.textContent = weatherData.location;
     dailyWeatherDiv.appendChild(dailyWeatherHeader);
 
     const dailyWeatherTemperature = document.createElement('p');
