@@ -1,6 +1,6 @@
 const weatherIcons = require.context("../icons/weather-icons-main", false, /\.svg$/);
 
-export default function dailyWeather(weatherData) {
+export default function dailyWeather(weatherData, tempSwitchValue) {
     const dailyWeatherDiv = document.createElement('div');
     dailyWeatherDiv.classList.add('daily-weather');
     
@@ -10,19 +10,25 @@ export default function dailyWeather(weatherData) {
     dailyWeatherDiv.appendChild(dailyWeatherHeader);
 
     const dailyWeatherTemperature = document.createElement('p');
+    const dailyWeatherFeelsLike = document.createElement('p');
+    dailyWeatherFeelsLike.classList.add('daily-weather-feels-like');
     dailyWeatherTemperature.classList.add('daily-weather-temperature');
-    dailyWeatherTemperature.textContent = `Temperature: ${weatherData.currentTemperature}°F`;
+
+    if (tempSwitchValue === 'true') {
+        dailyWeatherTemperature.textContent = `Temperature: ${weatherData.currentTemperature}°F`;
+        dailyWeatherFeelsLike.textContent = `Feels Like: ${weatherData.feelsLikeTemperature}°F`;
+    } else if (tempSwitchValue === 'false') {
+        dailyWeatherTemperature.textContent = `Temperature: ${weatherData.currentTemperature}°C`;
+        dailyWeatherFeelsLike.textContent = `Feels Like: ${weatherData.feelsLikeTemperature}°C`;
+    }
+  
     dailyWeatherDiv.appendChild(dailyWeatherTemperature);
+    dailyWeatherDiv.appendChild(dailyWeatherFeelsLike);
 
     const dailyWeatherHumidity = document.createElement('p');
     dailyWeatherHumidity.classList.add('daily-weather-humidity');
     dailyWeatherHumidity.textContent = `Humidity: ${weatherData.currentHumidity}%`;
     dailyWeatherDiv.appendChild(dailyWeatherHumidity);
-
-    const dailyWeatherFeelsLike = document.createElement('p');
-    dailyWeatherFeelsLike.classList.add('daily-weather-feels-like');
-    dailyWeatherFeelsLike.textContent = `Feels Like: ${weatherData.feelsLikeTemperature}°F`;
-    dailyWeatherDiv.appendChild(dailyWeatherFeelsLike);
 
     const dailyWeatherIcon = document.createElement('img');
     dailyWeatherIcon.classList.add('daily-weather-icon');

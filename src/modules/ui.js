@@ -4,6 +4,7 @@ import githubIcon from '../icons/github.svg';
 import weatherIcon from '../icons/cloud-sun-fill.svg';
 import dailyWeather from './weatherPane.js';
 import Weather from './weather.js';
+import { te } from 'date-fns/locale';
 
 export default function createUI() {
     createHeader();
@@ -80,11 +81,34 @@ function createMain() {
     mainButton.textContent = 'Get Weather';
     main.appendChild(mainButton);
 
+    const tempSwitch = document.createElement('button');
+    tempSwitch.classList.add('temp-switch');
+    tempSwitch.type = 'checkbox';
+    tempSwitch.value = 'true';
+    main.appendChild(tempSwitch);
+
+
+    const tempSwitchToggle = document.createElement('span');
+    tempSwitchToggle.classList.add('temp-switch-toggle');
+    tempSwitchToggle.textContent = '°F';
+    tempSwitch.appendChild(tempSwitchToggle);
+
+    tempSwitch.addEventListener('click', () => {
+        if (tempSwitch.value === 'true') {
+            tempSwitch.value = 'false';
+            tempSwitchToggle.classList.add('checked');
+            tempSwitchToggle.textContent = '°C';
+        } else {
+            tempSwitch.value = 'true';
+            tempSwitchToggle.classList.remove('checked');
+            tempSwitchToggle.textContent = '°F';
+        }
+    });
+
     mainButton.addEventListener('click', async () => {
-        const weatherData = new Weather (await getWeather(mainInput.value));
-        console.log(weatherData);
+        const weatherData = new Weather(await getWeather(mainInput.value, tempSwitch.value));
         mainContent.textContent = '';
-        mainContent.appendChild(dailyWeather(weatherData));    
+        mainContent.appendChild(dailyWeather(weatherData, tempSwitch.value));
     });
 }
 
